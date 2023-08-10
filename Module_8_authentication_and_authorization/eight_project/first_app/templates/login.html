@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block  body %}
+
+<div  style="width:50%; margin:auto;" >
+    <h1>Login Page</h1>
+
+    <form method="post" novalidate >
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            {% for er in form.non_field_errors %}
+            <p class="bg-danger text-ehite p-3">{{er}}</p>
+            {% endfor %}
+        
+        {% endif %}
+
+        {% comment %} {{form|crispy}}  {% endcomment %}
+        {% for fm in form %} 
+            <p>{{fm.label_tag}}</p> 
+            <p>{{fm}}</p> 
+            <p> {{fm.errors}}</p> 
+        {% endfor %} 
+        <button class="btn btn-primary" type= "submit">Submit</button>
+    </form>
+</div>
+
+
+
+{% endblock  %}
