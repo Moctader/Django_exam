@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div style="width:50%; margin: auto;">
+        {% if book %}
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for item in book %}
+              <tr>
+                {% comment %} <td>{{item.id}}</td> {% endcomment %}
+                <td>{{item.taskTitle}}</td>
+                <td>{{item.taskDescription}}</td>
+                <td>Incomplete<td>
+                <td><a href="{% url 'Edit_button' id=item.id %}" class="btn btn-warning btn-sm">Edit</a> 
+                <a href="{% url 'Delete_button' id=item.id %}"  class="btn btn-danger btn-sm">Delete</a>
+                <a href="{% url 'Complete_button' id=item.id %}"  class="btn btn-primary btn-sm">Complete</a></td>
+
+              </tr>
+            {% endfor %}
+            {% else %}
+              <h1>No Data is Available</h1>
+            {% endif %}
+            </tbody>
+          </table>
+       
+
+    </div>
+{% endblock  %}
